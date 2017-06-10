@@ -1,0 +1,131 @@
+@require '~styles/animation'
+@require '~styles/breakpoints'
+@require '~styles/colors'
+@require '~styles/variables'
+@require '~styles/mixins/grid'
+@require '~styles/mixins/typography'
+
+transition-duration = 0.5s
+
+.slideWrapper
+  position: absolute
+  top: 0
+  width: 100%
+  transform: translateX(100%)
+  animation-fill-mode: forwards
+
+.enterFromLeft
+  animation: enterFromLeftAnim transition-duration ease-in-out-quad
+
+.enterFromRight
+  animation: enterFromRightAnim transition-duration ease-in-out-quad
+
+.leaveLeft
+  animation: leaveLeftAnim transition-duration ease-in-out-quad
+
+.leaveRight
+  animation: leaveRightAnim transition-duration ease-in-out-quad
+
+.current
+  position: relative
+  transform: none
+
+@keyframes enterFromLeftAnim
+  0%
+    transform: translateX(-100%)
+  100%
+    transform: translateX(0)
+
+@keyframes enterFromRightAnim
+  0%
+    transform: translateX(100%)
+  100%
+    transform: translateX(0)
+
+@keyframes leaveLeftAnim
+  0%
+    transform: translateX(0)
+  100%
+    transform: translateX(-100%)
+
+@keyframes leaveRightAnim
+  0%
+    transform: translateX(0)
+  100%
+    transform: translateX(100%)
+
+.slide
+  display: flex
+  flex-direction: column
+  position: relative
+  width: 100%
+  height: 70vh
+  min-height: 500px
+  box-sizing: border-box
+  padding: 32px 0 56px
+  @media site-small-min
+    padding: 48px 24px 64px
+
+.slideValignMobileTop
+  justify-content: flex-start
+
+.slideValignMobileBottom
+  justify-content: flex-end
+
+.slideValignTop
+  @media site-small-min
+    justify-content: flex-start
+
+.slideValignMiddle
+  @media site-small-min
+    justify-content: center
+
+.slideValignBottom
+  @media site-small-min
+    justify-content: flex-end
+
+.captionGrid
+  grid()
+  width: 100%
+  text-align: center
+
+.captionGridAlignLeft
+  justify-content: flex-start
+  @media site-small-min
+    text-align: left
+
+.captionGridAlignCenter
+  justify-content: center
+
+.captionGridAlignRight
+  justify-content: flex-end
+  @media site-small-min
+    text-align: right
+
+.caption
+  grid-cell(12)
+  z-index: 1
+  color: roli-day-grey
+  @media site-small-min
+    grid-cell(8)
+  @media site-small-max
+    margin: 0 auto // to combat inline max-width bad alignment
+
+.darkMode
+  color: roli-night-grey
+
+.title
+  header-extra-large()
+  margin-bottom: 16px
+
+.subtitle
+  header-medium()
+  margin-bottom: 16px
+  font-weight: regular-weight
+
+.backgroundImage
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
